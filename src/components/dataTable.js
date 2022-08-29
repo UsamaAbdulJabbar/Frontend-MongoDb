@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -36,6 +37,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function DataTable() {
   const [userData, setuserData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(()=>{
     axios.get("http://localhost:5000/user").then((res)=>{
@@ -45,7 +47,27 @@ export default function DataTable() {
   },[]);
   console.log("save data",userData)
   let no = 1;
+  
+  //=====Deleted data from mongoDb=========
+  
+  const DeleteUser = (item)=>{
+    console.log(item)
+    axios.delete("http://localhost:5000/user/"+item).then((res)=>{
+      console.log(res)
+      alert("Data Deleted");
+    })
+    axios.get("http://localhost:5000/user").then((res)=>{
+      console.log(res.data);
+      setuserData(res.data);
+    })
+  }
 
+  const EditUser = (item) =>{
+    navigate('/editUser',{
+      state : item,
+    });
+
+  }
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -71,8 +93,8 @@ export default function DataTable() {
               <StyledTableCell align="center">{e.email}</StyledTableCell>
               <StyledTableCell align="center">{e.password}</StyledTableCell>
               <StyledTableCell align="center">{e.createdAt}</StyledTableCell>
-              <StyledTableCell align="center"><Button variant="contained" sx={{backgroundColor:"yellow",color:"black"}} ><EditIcon/></Button></StyledTableCell>
-              <StyledTableCell align="center"><Button variant="contained" sx={{backgroundColor:"red"} } ><DeleteIcon/></Button></StyledTableCell>
+              <StyledTableCell align="center"><Button variant="contained" sx={{backgroundColor:"yellow",color:"black"}} onClick={()=> EditUser(e)} ><EditIcon/></Button></StyledTableCell>
+              <StyledTableCell align="center"><Button  variant="contained" sx={{backgroundColor:"red"} } onClick={()=> DeleteUser(e.email)} ><DeleteIcon/></Button></StyledTableCell>
               
             </StyledTableRow>
           

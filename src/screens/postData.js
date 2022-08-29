@@ -40,7 +40,8 @@ function PostData() {
         }
         axios.post("http://localhost:5000/user",userDataObj).then((res) =>{
             console.log(res);
-           alert("User Add Succesfully");
+            window.location.reload();
+            alert("User Add Succesfully");
         })
     }
 

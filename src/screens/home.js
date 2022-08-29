@@ -3,6 +3,7 @@ import { Box } from "@mui/system";
 import React from "react";
 import BootstrapTable from "../components/bootstrapTable";
 import DataTable from "../components/dataTable";
+import Loader from "../components/loader";
 import SearchBar from "../components/searchBar";
 
 
@@ -23,6 +24,7 @@ function Home() {
                 <Box sx={{display:"flex",flexDirection:"column",justifyContent:"center",width:"100wv",padding:3}}>
                     <DataTable />
 
+                    <image width="200px" src="https://i.pinimg.com/originals/b0/68/5b/b0685b0e8c16e8cb57534de738f446a0.gif" />
                 </Box>
             </Box>
         </>

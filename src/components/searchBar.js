@@ -17,7 +17,7 @@ function SearchBar(){
         <TextField id="filled-basic" label="Search" variant="filled" sx={{width:"30%"}}  />
         <Button variant="contained" sx={{height:55,borderRadius:"0px 5px 5px 0px"}} ><SearchIcon/></Button>
         <Button variant="contained" sx={{marginLeft:10}} onClick={postData}  ><AddBoxIcon/>Add New Users</Button>
-        <Button variant="contained" sx={{marginLeft:10}}  ><SimCardDownloadIcon/>Downlaod Data</Button>
+        <Button variant="contained" sx={{marginLeft:10}}  ><SimCardDownloadIcon/>Download Data</Button>
         
         </>
     )
